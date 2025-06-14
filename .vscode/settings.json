@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "Tesis_Echoes_of_the_void.sln"
+    "dotnet.defaultSolution": "Echoes_Of_The_Void.sln"
 }
