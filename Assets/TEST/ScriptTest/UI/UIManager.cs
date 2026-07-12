@@ -36,6 +36,14 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (HelmentImage != null)
+            HelmentImage.SetActive(false);
+    }
+
+    public void ShowHelmetHUD()
+    {
+        if (HelmentImage != null)
+            HelmentImage.SetActive(true);
     }
 
     public void ActivateTouchpadPanel()
@@ -70,7 +78,7 @@ public class UIManager : MonoBehaviour
     public void DeactivatePuzzleCore(int index)
     {
         corePuzzlePanel.SetActive(false);
-        puzzleArrayPanels[index].SetActive(false); // Desactiva el panel del puzzle según el índice
+        puzzleArrayPanels[index].SetActive(false); // Desactiva el panel del puzzle segï¿½n el ï¿½ndice
         ActivatePlayerControlls();
 
     }

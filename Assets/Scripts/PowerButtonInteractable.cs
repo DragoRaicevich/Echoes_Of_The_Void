@@ -1,32 +1,31 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PowerButtonInteractable : MonoBehaviour
 {
     public GameObject interactText;
     public GameObject puerta; // Asigna la puerta que se abrirá
     private bool playerInRange = false;
-    private PlayerInputReader inputReader;
+    private bool isActivated = false;
 
-    private void Start()
+    // Se conecta desde el Inspector: componente Player Input del PLAYER,
+    // evento de la acción "Interact", igual que PlayerInteractions.Interact.
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        inputReader = Object.FindFirstObjectByType<PlayerInputReader>();
-    }
+        if (!context.performed || isActivated || !playerInRange) return;
 
-    private void Update()
-    {
-        if (playerInRange && inputReader != null && inputReader.InteractPressed)
+        isActivated = true;
+        Debug.Log("¡Botón activado!");
+
+        if (puerta != null)
         {
-            Debug.Log("¡Botón activado!");
-
-            // Aquí colocas lo que debe pasar al activar el botón
-            if (puerta != null)
-                puerta.SetActive(false); // o animación, etc.
-
-            if (interactText != null)
-                interactText.SetActive(false);
-
-            playerInRange = false;
+            DoorController door = puerta.GetComponent<DoorController>();
+            if (door != null)
+                door.UnlockDoor();
         }
+
+        if (interactText != null)
+            interactText.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,7 +33,7 @@ public class PowerButtonInteractable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            if (interactText != null)
+            if (!isActivated && interactText != null)
                 interactText.SetActive(true);
         }
     }

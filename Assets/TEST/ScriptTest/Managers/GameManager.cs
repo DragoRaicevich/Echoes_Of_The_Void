@@ -74,10 +74,6 @@ public class GameManager : MonoBehaviour
     private void WiringComplete()
     {
         wiringZoneCompleted = true;
-        if(coreZoneCompleted == true)
-        {
-            ActivateMainBootn();
-        }
         Debug.Log("Wiring zone completed!");
     }
 
@@ -88,10 +84,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("All cores completed!");
             coreZoneCompleted = true;
-            if(wiringZoneCompleted == true)
-            {
-                ActivateMainBootn();
-            }
+            ActivateMainBootn();
         }
     }
 }

@@ -9,7 +9,7 @@ public class SuitPickup : MonoBehaviour
         if (!isCollected && other.CompareTag("Player"))
         {
             isCollected = true;
-            FindObjectOfType<SurvivalManager>().PutOnSuit();
+            UIManager.Instance.ShowHelmetHUD();
             gameObject.SetActive(false); // Oculta el traje
         }
     }

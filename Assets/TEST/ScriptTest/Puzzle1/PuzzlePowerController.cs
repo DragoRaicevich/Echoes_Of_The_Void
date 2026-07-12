@@ -18,7 +18,7 @@ public class PuzzlePowerController : MonoBehaviour
 
 
     // Este metodo se llama al pulzar el boton "START".
-    public void CheckPower() 
+    public void CheckPower()
     {
         CheckNodes();
         if (allNodesConected == true && powerStationIsConnected == true)
